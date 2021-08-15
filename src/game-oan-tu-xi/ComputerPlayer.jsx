@@ -1,16 +1,27 @@
+import { map } from "jquery";
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class ComputerPlayer extends Component {
+class ComputerPlayer extends Component {
   render() {
+    let keyframe = `@keyframes randomItem${Date.now} {
+      from {top: 0px;}
+      to {top: 200px;}
+    }`;
+
     return (
       <div className="text-center teamPlayer">
-        <div className="think">
+        <style>{keyframe}</style>
+        <div className="think" >
           <img
+            style={{
+              animation: `randomItem${Date.now} 0.5s`,
+              transform: "rotate(120deg)",
+            }}
             className="mt-3"
             width={100}
             height={100}
-            style={{transform: 'rotate(120deg)'}}
-            src="./images/game-oan-tu-xi/bua.png"
+            src={this.props.computer.hinhAnh}
           />
         </div>
         <div className="speech-bubble"></div>
@@ -22,3 +33,10 @@ export default class ComputerPlayer extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    computer: state.GameOanTuXiReducer.computer,
+  };
+};
+
+export default connect(mapStateToProps)(ComputerPlayer);

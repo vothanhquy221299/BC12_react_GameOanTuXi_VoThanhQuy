@@ -26,11 +26,12 @@ class TeamPlayer extends Component {
             if(item.datCuoc){
                 border = {border: '3px solid orange'};
             }
-
-
             return (
               <div className="col-4">
-                <button style={border} className="btnOption">
+                <button onClick={()=>{
+                  this.props.datCuoc(item.ma);
+                }}
+                style={border} className="btnOption">
                   <img
                     width={35}
                     height={35}
@@ -51,4 +52,14 @@ const mapStateToProps = state => ({
     mangDatCuoc: state.GameOanTuXiReducer.mangDatCuoc,
 });
 
-export default connect(mapStateToProps)(TeamPlayer);
+const mapDispatchToProps = dispatch =>{
+  return {
+    datCuoc: (maCuoc) =>{
+      dispatch({
+        type: 'CHON_KEO_BUA_BAO',
+        maCuoc
+      })
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(TeamPlayer);
