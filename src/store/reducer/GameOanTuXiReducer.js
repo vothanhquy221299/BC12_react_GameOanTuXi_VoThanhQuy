@@ -1,4 +1,4 @@
-// import * as GameOanTuXiConstant from '../constants/GameOanTuXiConstant';
+import * as GameOanTuXiConstant from '../constants/GameOanTuXiConstant';
 const initialState ={
     mangDatCuoc: [
         {ma: 'keo', hinhAnh: './images/game-oan-tu-xi/keo.png', datCuoc: true},
